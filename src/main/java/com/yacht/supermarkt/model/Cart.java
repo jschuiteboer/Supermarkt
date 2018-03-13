@@ -1,6 +1,5 @@
 package com.yacht.supermarkt.model;
 
-import com.yacht.supermarkt.LineItem;
 import lombok.Data;
 
 import java.math.BigDecimal;
@@ -15,11 +14,11 @@ public class Cart {
         this.lineItems.add(lineItem);
     }
 
-    public BigDecimal getTotal() {
+    public BigDecimal getSubTotal() {
         BigDecimal total = new BigDecimal(0);
 
         for(LineItem lineItem : this.getLineItems()) {
-            total = total.add(lineItem.getTotal());
+            total = total.add(lineItem.getSubTotal());
         }
 
         return total;
@@ -33,5 +32,9 @@ public class Cart {
         }
 
         return total;
+    }
+
+    public BigDecimal getTotal() {
+        return this.getSubTotal().subtract(this.getTotalDiscount());
     }
 }

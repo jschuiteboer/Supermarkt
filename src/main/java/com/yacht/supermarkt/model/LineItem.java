@@ -1,6 +1,6 @@
-package com.yacht.supermarkt;
+package com.yacht.supermarkt.model;
 
-import com.yacht.supermarkt.model.Product;
+import com.yacht.supermarkt.DiscountRule;
 import lombok.Data;
 
 import java.math.BigDecimal;
@@ -9,19 +9,17 @@ import java.math.BigDecimal;
 public class LineItem {
     private Product product;
     private int amount;
+    private DiscountRule discountRule;
 
-    public LineItem(Product product, int amount) {
-        this.product = product;
-        this.amount = amount;
-    }
-
-    public BigDecimal getTotal() {
+    public BigDecimal getSubTotal() {
         BigDecimal productPrice = this.getProduct().getPrice();
         return productPrice.multiply(new BigDecimal(this.getAmount()));
     }
 
     // TODO: implement
     public BigDecimal getTotalDiscount() {
-        return null;
+        DiscountRule discountRule = this.getDiscountRule();
+
+        return discountRule.getTotalDiscount(this.getProduct(), this.getAmount());
     }
 }
