@@ -1,5 +1,6 @@
 package com.yacht.supermarkt.business.discountrules;
 
+import com.yacht.supermarkt.model.LineItem;
 import com.yacht.supermarkt.model.Product;
 import org.junit.Assert;
 import org.junit.Test;
@@ -17,17 +18,17 @@ public class DayOfWeekDiscountRuleTest {
         // Arrange
         BigDecimal expected = new BigDecimal(20);
 
-        Product product = new Product();
+        LineItem lineItem = new LineItem();
 
         DiscountRule mockedDiscountRule = mock(DiscountRule.class);
-        when(mockedDiscountRule.getTotalDiscount(product, 2)).thenReturn(new BigDecimal(20));
+        when(mockedDiscountRule.getTotalDiscount(lineItem)).thenReturn(new BigDecimal(20));
 
         DayOfWeekDiscountRule dayOfWeekDiscountRule = new DayOfWeekDiscountRule(mockedDiscountRule);
         dayOfWeekDiscountRule.setCurrentDayOfWeek(DayOfWeek.MONDAY);
         dayOfWeekDiscountRule.setEnabledDays(EnumSet.of(DayOfWeek.MONDAY));
 
         // Act
-        BigDecimal result = dayOfWeekDiscountRule.getTotalDiscount(product, 2);
+        BigDecimal result = dayOfWeekDiscountRule.getTotalDiscount(lineItem);
 
         // Assert
         Assert.assertEquals(result.compareTo(expected), 0);
@@ -38,17 +39,17 @@ public class DayOfWeekDiscountRuleTest {
         // Arrange
         BigDecimal expected = new BigDecimal(0);
 
-        Product product = new Product();
+        LineItem lineItem = new LineItem();
 
         DiscountRule mockedDiscountRule = mock(DiscountRule.class);
-        when(mockedDiscountRule.getTotalDiscount(product, 2)).thenReturn(new BigDecimal(20));
+        when(mockedDiscountRule.getTotalDiscount(lineItem)).thenReturn(new BigDecimal(20));
 
         DayOfWeekDiscountRule dayOfWeekDiscountRule = new DayOfWeekDiscountRule(mockedDiscountRule);
         dayOfWeekDiscountRule.setCurrentDayOfWeek(DayOfWeek.MONDAY);
         dayOfWeekDiscountRule.setEnabledDays(EnumSet.noneOf(DayOfWeek.class));
 
         // Act
-        BigDecimal result = dayOfWeekDiscountRule.getTotalDiscount(product, 2);
+        BigDecimal result = dayOfWeekDiscountRule.getTotalDiscount(lineItem);
 
         // Assert
         Assert.assertEquals(result.compareTo(expected), 0);

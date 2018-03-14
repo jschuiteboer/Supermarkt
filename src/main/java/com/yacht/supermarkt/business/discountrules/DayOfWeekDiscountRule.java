@@ -1,5 +1,6 @@
 package com.yacht.supermarkt.business.discountrules;
 
+import com.yacht.supermarkt.model.LineItem;
 import com.yacht.supermarkt.model.Product;
 import lombok.Setter;
 
@@ -21,9 +22,10 @@ public class DayOfWeekDiscountRule extends DiscountRuleDecorator {
         this.enabledDays = EnumSet.noneOf(DayOfWeek.class);
     }
 
-    public BigDecimal getTotalDiscount(Product product, int amount) {
+    @Override
+    public BigDecimal getTotalDiscount(LineItem lineItem) {
         if(enabledDays.contains(this.currentDayOfWeek)) {
-            return this.delegate.getTotalDiscount(product, amount);
+            return this.delegate.getTotalDiscount(lineItem);
         } else {
             return new BigDecimal(0);
         }

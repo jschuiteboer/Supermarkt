@@ -16,10 +16,7 @@ public class LineItem {
         return productPrice.multiply(new BigDecimal(this.getAmount()));
     }
 
-    // TODO: implement
     public BigDecimal getTotalDiscount() {
-        DiscountRule discountRule = this.getDiscountRule();
-
-        return discountRule.getTotalDiscount(this.getProduct(), this.getAmount());
+        return this.getDiscountRule().getTotalDiscount(this);
     }
 }
