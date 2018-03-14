@@ -1,7 +1,6 @@
 package com.yacht.supermarkt.business.discountrules;
 
 import com.yacht.supermarkt.model.LineItem;
-import com.yacht.supermarkt.model.Product;
 import lombok.Setter;
 
 import java.math.BigDecimal;
