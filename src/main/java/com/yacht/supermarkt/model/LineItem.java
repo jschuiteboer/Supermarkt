@@ -1,6 +1,6 @@
 package com.yacht.supermarkt.model;
 
-import com.yacht.supermarkt.DiscountRule;
+import com.yacht.supermarkt.business.discountrules.DiscountRule;
 import lombok.Data;
 
 import java.math.BigDecimal;

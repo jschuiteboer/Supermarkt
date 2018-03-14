@@ -1,10 +1,15 @@
 package com.yacht.supermarkt;
 
+import com.yacht.supermarkt.business.discountrules.DayOfWeekDiscountRule;
+import com.yacht.supermarkt.business.discountrules.PercentageDiscountRule;
 import com.yacht.supermarkt.model.Cart;
 import com.yacht.supermarkt.model.LineItem;
 import com.yacht.supermarkt.model.Product;
 
 import java.math.BigDecimal;
+import java.time.DayOfWeek;
+import java.time.LocalDate;
+import java.util.EnumSet;
 
 public class App {
     public static void main(String[] args) {
@@ -12,14 +17,14 @@ public class App {
         product.setName("frikandelbroodje");
         product.setPrice(new BigDecimal("1.23"));
 
+        DayOfWeekDiscountRule discountRule = new DayOfWeekDiscountRule(new PercentageDiscountRule(35));
+        discountRule.setEnabledDays(EnumSet.of(DayOfWeek.WEDNESDAY));
+        discountRule.setCurrentDayOfWeek(LocalDate.now().getDayOfWeek());
+
         LineItem lineItem = new LineItem();
         lineItem.setProduct(product);
         lineItem.setAmount(2);
-        lineItem.setDiscountRule(new DiscountRule() {
-            public BigDecimal getTotalDiscount(Product product, int amount) {
-                return new BigDecimal(0);
-            }
-        });
+        lineItem.setDiscountRule(discountRule);
 
         Cart cart = new Cart();
         cart.addLineItem(lineItem);
