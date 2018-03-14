@@ -8,7 +8,6 @@ import java.math.BigDecimal;
 
 public class App {
     public static void main(String[] args) {
-
         Product product = new Product();
         product.setName("frikandelbroodje");
         product.setPrice(new BigDecimal("1.23"));

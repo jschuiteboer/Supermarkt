@@ -8,7 +8,7 @@ import java.util.List;
 
 @Data
 public class Cart {
-    private List<LineItem> lineItems = new ArrayList<LineItem>();
+    private List<LineItem> lineItems = new ArrayList<>();
 
     public void addLineItem(LineItem lineItem) {
         this.lineItems.add(lineItem);
