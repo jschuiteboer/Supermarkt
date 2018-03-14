@@ -12,18 +12,20 @@ public class DayOfWeekDiscountRule extends DiscountRuleDecorator {
     @Setter
     private EnumSet<DayOfWeek> enabledDays;
 
+    @Setter
     private DayOfWeek currentDayOfWeek;
 
     public DayOfWeekDiscountRule(DiscountRule delegate) {
         super(delegate);
-        enabledDays.add(DayOfWeek.MONDAY);
-    }
 
-    public void setCurrentDayOfWeek(DayOfWeek currentDayOfWeek) {
-        this.currentDayOfWeek = currentDayOfWeek;
+        this.enabledDays = EnumSet.noneOf(DayOfWeek.class);
     }
 
     public BigDecimal getTotalDiscount(Product product, int amount) {
-        return this.delegate.getTotalDiscount(product, amount);
+        if(enabledDays.contains(this.currentDayOfWeek)) {
+            return this.delegate.getTotalDiscount(product, amount);
+        } else {
+            return new BigDecimal(0);
+        }
     }
 }
