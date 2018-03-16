@@ -66,7 +66,10 @@ public class MainController {
 
     @FXML
     private void onButtonClicked(final Event event) {
-        productRepository.save(new Product(null, "product", new BigDecimal("1.23")));
+        Product product = new Product();
+        product.setName("testProduct");
+        product.setPrice(new BigDecimal("1.546"));
+        productRepository.save(product);
 
         System.out.println("\nProducts:");
 
