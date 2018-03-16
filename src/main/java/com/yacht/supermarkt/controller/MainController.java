@@ -5,7 +5,7 @@ import com.yacht.supermarkt.business.discountrules.PercentageDiscountRule;
 import com.yacht.supermarkt.model.Cart;
 import com.yacht.supermarkt.model.LineItem;
 import com.yacht.supermarkt.model.Product;
-import com.yacht.supermarkt.repository.IProductRepository;
+import com.yacht.supermarkt.repository.ProductRepository;
 import de.felixroske.jfxsupport.FXMLController;
 import javafx.event.Event;
 import javafx.fxml.FXML;
@@ -20,7 +20,7 @@ import java.util.EnumSet;
 public class MainController {
 
     @Autowired
-    IProductRepository productRepository;
+    ProductRepository productRepository;
 
     public void initialize() {
         Product product;
