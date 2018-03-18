@@ -1,8 +1,10 @@
 package com.yacht.supermarkt.business;
 
+import com.yacht.supermarkt.event.ProductSavedEvent;
 import com.yacht.supermarkt.model.Product;
 import com.yacht.supermarkt.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Component;
 import javax.annotation.PostConstruct;
@@ -13,10 +15,18 @@ public class ProductManager {
     private final static int PAGE_SIZE = 30;
 
     @Autowired
+    private ApplicationEventPublisher applicationEventPublisher;
+
+    @Autowired
     private ProductService productService;
 
     public Page<Product> getPage(int page) {
         return productService.getPage(page, PAGE_SIZE);
+    }
+
+    public void save(Product product) {
+        this.productService.save(product);
+        this.applicationEventPublisher.publishEvent(new ProductSavedEvent(product));
     }
 
     //TODO: move this to a develop env
