@@ -1,6 +1,6 @@
 package com.yacht.supermarkt.controller;
 
-import com.yacht.supermarkt.business.discountrules.ProductManager;
+import com.yacht.supermarkt.business.ProductManager;
 import com.yacht.supermarkt.model.Product;
 import de.felixroske.jfxsupport.FXMLController;
 import javafx.fxml.FXML;

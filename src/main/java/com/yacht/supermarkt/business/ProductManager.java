@@ -1,4 +1,4 @@
-package com.yacht.supermarkt.business.discountrules;
+package com.yacht.supermarkt.business;
 
 import com.yacht.supermarkt.model.Product;
 import com.yacht.supermarkt.service.ProductService;
