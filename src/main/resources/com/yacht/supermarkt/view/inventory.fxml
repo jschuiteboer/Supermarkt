@@ -2,9 +2,7 @@
 
 <?import javafx.scene.layout.BorderPane?>
 
-
-<BorderPane prefHeight="200.0" prefWidth="200.0"
-            xmlns="http://javafx.com/javafx/8.0.121"
+<BorderPane xmlns="http://javafx.com/javafx/8.0.121"
             xmlns:fx="http://javafx.com/fxml/1">
     <left>
         <fx:include source="productList.fxml"/>
